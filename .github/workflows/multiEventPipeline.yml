@@ -1,26 +1,26 @@
-name: "Multi Event Pipeline workflow"
+name: "Multi Event Pipeline Workflow"
 
 on:
     push:
-        branches:
-            -master
-            -test
+      branches:
+        - master  # or 'main' depending on your repo
+        - test
 
     pull_request:
-        branches:
-            -master
+      branches:
+        - master  # or 'main' depending on your repo
 
 jobs:
     on-push:
+        runs-on: ubuntu-latest
         if: github.event_name == 'push'
-        runs-on: ubuntu-latest
         steps:
-           - name: "running on master/test push"
-             run: echo "running on master/test push"
-    
+           - name: "Running on push to master/test"
+             run: echo "Running on push to master/test branch"
+
     on-pull-request:
-        if: github.event_name == 'pull_request'
         runs-on: ubuntu-latest
+        if: github.event_name == 'pull_request'
         steps:
-           - name: "running on master/test push"
-             run: echo "running on master/test push"
+           - name: "Running on pull request to master"
+             run: echo "Running on pull request to master branch"
